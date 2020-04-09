@@ -1,14 +1,15 @@
 const Discord = require('discord.js');
-const bot = new Discord.Client();
-const{ prefix, token } = require('./config.json');
+const client = new Discord.Client();
+const{ token } = require('./config.json');
+const commandHandler = require('./handlers/command.handler.js');
 
-bot.on('ready', () => 
+
+// Initialize command handler
+commandHandler(client);
+
+client.on('ready', () => 
 {
     console.log('Bot is online');
-    bot.user.setActivity('>help');
+    client.user.setActivity('>help');
 })
-bot.login(token);
-
-bot.on('msg', msg => {
-
-})
+client.login(token);
