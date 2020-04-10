@@ -1,8 +1,12 @@
-module.exports = {
-    name: "ping",
-    description: "Ping",
+const Discord = require('discord.js');
+const client = new Discord.Client();
 
-    run(message) {
-        message.reply('Pong<');
+module.exports = {
+    name: 'ping',
+    description: 'Ping',
+
+    async run(message) {
+        const m = await message.channel.send('Pong? wait...');
+        m.edit(`Pong ${m.createdTimestamp - message.createdTimestamp}ms`);
     }
 }

@@ -8,7 +8,7 @@ const commandHandler = require('./handlers/command.handler.js');
 commandHandler(client);
 
 client.on('ready', () => {
-    console.log('Bot is online');
+    console.log(`Logged in as ${client.user.tag}`);
     client.user.setActivity('>help');
 })
 client.login(token);
