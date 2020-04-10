@@ -20,6 +20,5 @@ module.exports = {
             .setTitle('Command List')
             .addField('Commands:', commands);
         message.channel.send(Embed);
-        //message.reply(`Commands: \n${commands}`);
     }
 }

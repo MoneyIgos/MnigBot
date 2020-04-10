@@ -2,14 +2,6 @@
 
 MnigBot is a moderation bot making by mnig#2000.
 
-## Table of contents
-
-- What should I know before starting?
-- What programs do I need?
-- Installation
-
-## Installation
-
 ## Used libraries:
 
 * [ascii](http://www.asciitable.com/)
