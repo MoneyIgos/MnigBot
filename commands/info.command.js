@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const client = new Discord.Client();
 const { version, author} = require(`${__dirname}/../package.json`);
 
 module.exports = {
@@ -14,9 +15,6 @@ module.exports = {
                 { name: 'Author:', value: `${author}`, inline: true },
                 { name: 'Version:', value: `${version}`, inline: true }
             );
-            //To do
-            //.addField('Users:', /*users*/)
-            //.addField('Guilds:', /*guilds*/);
         message.channel.send(Embed);
     }
 }

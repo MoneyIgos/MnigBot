@@ -51,7 +51,7 @@ module.exports = (client) => {
       client.commands.get(cmd).run(message, args);
     } catch (e) {
       console.error(e);
-      message.reply('Ugh... Something went wrong with execute that command!');
+      message.reply('Ughh... Something went wrong with execute that command!');
     }
   })
 }
