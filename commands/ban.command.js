@@ -6,23 +6,23 @@ module.exports = {
     description: 'ban Member.',
 
     run(message, args) {
-        //PERMISIONS
+        // PERMISIONS
         if(!message.member.hasPermission(['BAN_MEMBERS']))
-            return message.reply('Ughh... You need Ban Members permissions to perform this command!')
+            return message.reply('Ughh... You need Ban Members permissions to perform this command!');
 
-        //MEMBER TO KICK
+        // MEMBER TO KICK
         const member = message.mentions.members.first();
         if(!member) 
             return message.reply('You must provide a user to ban!');
         
-        //REASON    
+        // REASON    
         const reason = args.slice(1).join(' ') || 'No reason given';
         
-        //BOT PERMISIONS
+        // BOT PERMISIONS
         if(!message.guild.me.hasPermission(['BAN_MEMBERS']))
             return message.reply('I don\'t have permission to perform this command!');
 
-        //SENDING MODLOG
+        // SENDING MODLOG
         const channel = message.guild.channels.cache.get('698120856383127600');
         let embed = new Discord.MessageEmbed()
             .setColor('#ff0000')
@@ -33,13 +33,13 @@ module.exports = {
                 { name: 'Moderator:', value: message.author, inline: true },
                 { name: 'Reason:', value: reason, inline: true },
                 { name: 'Date:', value: message.createdAt.toLocaleString() }
-            )
-         channel.send(embed);
+            );
+        channel.send(embed);
 
         //KICKING
         member.send(`You have been banned from ${message.guild.name} for: ${reason}`)
-        .then(() => member.ban())
-        .catch(e => console.log(e))
-        message.channel.send(`**${member.user.tag}** has been kicked`)
+            .then(() => member.ban())
+            .catch(e => console.log(e));
+        message.channel.send(`**${member.user.tag}** has been kicked`);
     }
-}
+};
