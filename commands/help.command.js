@@ -14,7 +14,7 @@ module.exports = {
         let commands = '';
         for (const file of commandFiles) {
             const command = require(`${__dirname}/../commands/${file}`);
-            commands += `${command.name}\n`;       
+            commands += `${command.name}\n`;
         }
         const Embed = new Discord.MessageEmbed()
             .setColor('#247800')
