@@ -7,5 +7,5 @@ module.exports = {
     async run(message) {
         const m = await message.channel.send('Pong? wait...');
         m.edit(`Pong ${m.createdTimestamp - message.createdTimestamp}ms`);
-    }
-}
+    },
+};

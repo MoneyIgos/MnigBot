@@ -3,7 +3,6 @@ const client = new Discord.Client();
 const { token } = require('./config/config.json');
 const commandHandler = require('./handlers/command.handler.js');
 
-
 // Initialize command handler
 commandHandler(client);
 

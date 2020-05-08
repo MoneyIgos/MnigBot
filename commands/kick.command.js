@@ -7,31 +7,33 @@ module.exports = {
 
     run(message, args) {
         // Checking user permissions
-        if(!message.member.hasPermission(['KICK_MEMBERS']))
-            return message.reply('Ughh... You need Kicsk Members permissions to perform this command!');
+        if (!message.member.hasPermission(['KICK_MEMBERS']))
+            return message.reply(
+                'Ughh... You need Kicsk Members permissions to perform this command!'
+            );
 
         // Checking member to kick
         const member = message.mentions.members.first();
-        if(!member)
-            return message.reply('You must provide a user to kick!');
+        if (!member) return message.reply('You must provide a user to kick!');
 
         // Checking reason
         const reason = args.slice(1).join(' ') || 'No reason given';
 
         // Checking bot permissions
-        if(!message.guild.me.hasPermission(['KICK_MEMBERS']))
+        if (!message.guild.me.hasPermission(['KICK_MEMBERS']))
             return message.reply('I don\'t have permission to perform this command!');
 
         // Kicking
-        member.send(`You have been kicked from ${message.guild.name} for: ${reason}`)
+        member
+            .send(`You have been kicked from ${message.guild.name} for: ${reason}`)
             .then(() => member.kick())
-            .catch(e => console.log(e));
+            .catch((e) => console.log(e));
         message.channel.send(`**${member.user.tag}** has been kicked`);
 
         // Sending Modlog
         const channel = message.guild.channels.cache.get('698120856383127600');
-        if(!channel) {
-            let embed = new Discord.MessageEmbed()
+        if (!channel) {
+            const embed = new Discord.MessageEmbed()
                 .setColor('#ff0000')
                 .setAuthor(`[KICK] ${member.user.tag}`)
                 .addFields(
@@ -43,5 +45,5 @@ module.exports = {
                 );
             channel.send(embed);
         }
-    }
+    },
 };

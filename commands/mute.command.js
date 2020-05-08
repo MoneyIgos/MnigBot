@@ -7,25 +7,26 @@ module.exports = {
 
     run(message, args) {
         // Checking user permissions
-        if(!message.member.hasPermission(['MANAGE_ROLES']))
-            return message.reply('Ughh... You need Manage Roles permissions to perform this command!');
+        if (!message.member.hasPermission(['MANAGE_ROLES']))
+            return message.reply(
+                'Ughh... You need Manage Roles permissions to perform this command!'
+            );
 
         // Checking bot permissions
-        if(!message.guild.me.hasPermission(['MANAGE_ROLES']))
+        if (!message.guild.me.hasPermission(['MANAGE_ROLES']))
             return message.reply('I don\'t have permission to perform this command!');
 
         // Checking member to mute
         const member = message.mentions.members.first();
-        if(!member)
-            return message.reply('You must provide a user to kick!');
+        if (!member) return message.reply('You must provide a user to kick!');
 
         // Checking reason
         const reason = args.slice(1).join(' ') || 'No reason given';
 
         // Sending Modlog
         const channel = message.guild.channels.cache.get('698120856383127600');
-        if(channel){
-            let embed = new Discord.MessageEmbed()
+        if (channel) {
+            const embed = new Discord.MessageEmbed()
                 .setColor('#ff0000')
                 .setAuthor(`[MUTE] ${member.user.tag}`)
                 .addFields(
@@ -38,19 +39,20 @@ module.exports = {
         }
 
         // Cheching rank
-        const muted = message.guild.roles.cache.find(role => role.name === 'muted');
-        if(!muted) {
+        const muted = message.guild.roles.cache.find((role) => role.name === 'muted');
+        if (!muted) {
             message.guild.roles.create({
                 data: {
                     name: 'muted',
-                    permissions: []
-                }
+                    permissions: [],
+                },
             });
         }
 
         // Muting
-        message.channel.send(`**${member.user.tag}** has been muted for: ${reason}`)
+        message.channel
+            .send(`**${member.user.tag}** has been muted for: ${reason}`)
             .then(() => member.roles.add(muted))
-            .catch(e => console.log(e));
-    }
+            .catch((e) => console.log(e));
+    },
 };

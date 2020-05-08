@@ -6,9 +6,10 @@ module.exports = {
     description: 'Displays every commands.',
 
     run(message) {
-
         // CHECKING COMMANDS LIST
-        const commandFiles = readdirSync(`${__dirname}/../commands`).filter((file) => file.endsWith('.command.js'));
+        const commandFiles = readdirSync(`${__dirname}/../commands`).filter((file) =>
+            file.endsWith('.command.js')
+        );
 
         //SENDING COMMAND LIST
         let commands = '';
@@ -21,5 +22,5 @@ module.exports = {
             .setTitle('Command List')
             .addField('Commands:', commands);
         message.channel.send(Embed);
-    }
+    },
 };
