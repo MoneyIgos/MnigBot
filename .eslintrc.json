@@ -12,8 +12,6 @@
     },
     "rules": {
         "prettier/prettier": "error",
-        "semi": "error",
-        "quotes": ["error", "single"],
         "prefer-const": "warn",
         "no-unused-vars": "warn"
     }
