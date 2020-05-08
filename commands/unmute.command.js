@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
+new Discord.Client();
 
 module.exports = {
     name: 'unmute',
@@ -7,28 +7,30 @@ module.exports = {
 
     run(message) {
         // Checking user permissions
-        if(!message.member.hasPermission(['MANAGE_ROLES']))
-            return message.reply('Ughh... You need Manage Roles permissions to perform this command!');
+        if (!message.member.hasPermission(['MANAGE_ROLES']))
+            return message.reply(
+                'Ughh... You need Manage Roles permissions to perform this command!'
+            );
 
         // Checking bot permissions
-        if(!message.guild.me.hasPermission(['MANAGE_ROLES']))
-            return message.reply('I don\'t have permission to perform this command!');
+        if (!message.guild.me.hasPermission(['MANAGE_ROLES']))
+            return message.reply("I don't have permission to perform this command!");
 
         // Checking member to unmute
         const member = message.mentions.members.first();
-        if(!member)
-            return message.reply('You must provide a user to kick!');
+        if (!member) return message.reply('You must provide a user to kick!');
 
         // Unmuting
-        const muted = message.guild.roles.cache.find(role => role.name === 'muted');
-        message.channel.send(`**${member.user.tag}** has been unmuted`)
+        const muted = message.guild.roles.cache.find((role) => role.name === 'muted');
+        message.channel
+            .send(`**${member.user.tag}** has been unmuted`)
             .then(() => member.roles.remove(muted))
-            .catch(e => console.log(e));
+            .catch((e) => console.log(e));
 
         // Sending Modlog
         const channel = message.guild.channels.cache.get('698120856383127600');
         if (channel) {
-            let embed = new Discord.MessageEmbed()
+            const embed = new Discord.MessageEmbed()
                 .setColor('#00ff00')
                 .setAuthor(`[UNMUTE] ${member.user.tag}`)
                 .addFields(
@@ -39,5 +41,5 @@ module.exports = {
                 );
             channel.send(embed);
         }
-    }
+    },
 };

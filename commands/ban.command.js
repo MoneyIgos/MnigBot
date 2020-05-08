@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
+new Discord.Client();
 
 module.exports = {
     name: 'ban',
@@ -7,25 +7,26 @@ module.exports = {
 
     run(message, args) {
         // Checking user permissions
-        if(!message.member.hasPermission(['BAN_MEMBERS']))
-            return message.reply('Ughh... You need Ban Members permissions to perform this command!');
+        if (!message.member.hasPermission(['BAN_MEMBERS']))
+            return message.reply(
+                'Ughh... You need Ban Members permissions to perform this command!'
+            );
 
         // Checking member to ban
         const member = message.mentions.members.first();
-        if(!member)
-            return message.reply('You must provide a user to ban!');
+        if (!member) return message.reply('You must provide a user to ban!');
 
         // Checking reason
         const reason = args.slice(1).join(' ') || 'No reason given';
 
         // Checking bot permissions
-        if(!message.guild.me.hasPermission(['BAN_MEMBERS']))
-            return message.reply('I don\'t have permission to perform this command!');
+        if (!message.guild.me.hasPermission(['BAN_MEMBERS']))
+            return message.reply("I don't have permission to perform this command!");
 
         // Sending Modlog
         const channel = message.guild.channels.cache.get('698120856383127600');
         if (!channel) {
-            let embed = new Discord.MessageEmbed()
+            const embed = new Discord.MessageEmbed()
                 .setColor('#ff0000')
                 .setAuthor(`[BAN] ${member.user.tag}`)
                 .addFields(
@@ -39,9 +40,10 @@ module.exports = {
         }
 
         // Banning
-        member.send(`You have been banned from ${message.guild.name} for: ${reason}`)
+        member
+            .send(`You have been banned from ${message.guild.name} for: ${reason}`)
             .then(() => member.ban())
-            .catch(e => console.log(e));
+            .catch((e) => console.log(e));
         message.channel.send(`**${member.user.tag}** has been kicked`);
-    }
+    },
 };
