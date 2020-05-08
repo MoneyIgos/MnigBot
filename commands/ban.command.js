@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
+new Discord.Client();
 
 module.exports = {
     name: 'ban',
@@ -21,7 +21,7 @@ module.exports = {
 
         // Checking bot permissions
         if (!message.guild.me.hasPermission(['BAN_MEMBERS']))
-            return message.reply('I don\'t have permission to perform this command!');
+            return message.reply("I don't have permission to perform this command!");
 
         // Sending Modlog
         const channel = message.guild.channels.cache.get('698120856383127600');

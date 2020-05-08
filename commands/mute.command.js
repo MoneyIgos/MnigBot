@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
+new Discord.Client();
 
 module.exports = {
     name: 'mute',
@@ -14,7 +14,7 @@ module.exports = {
 
         // Checking bot permissions
         if (!message.guild.me.hasPermission(['MANAGE_ROLES']))
-            return message.reply('I don\'t have permission to perform this command!');
+            return message.reply("I don't have permission to perform this command!");
 
         // Checking member to mute
         const member = message.mentions.members.first();

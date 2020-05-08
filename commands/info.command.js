@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
+new Discord.Client();
 const { version, author } = require(`${__dirname}/../package.json`);
 
 module.exports = {
