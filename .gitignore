@@ -1,7 +1,10 @@
+node_modules/
 config.json
-node_modules
-package-lock.json
-start.bat
-start.sh
-.eslintrc
-.prettierrc
+
+# Editor directories and files
+.idea
+.vscode
+
+# MAC
+.DS_Store
+
