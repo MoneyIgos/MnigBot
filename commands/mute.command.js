@@ -23,6 +23,10 @@ module.exports = {
         // Checking reason
         const reason = args.slice(1).join(' ') || 'No reason given';
 
+        // Setting [MUTED] Nickname
+        if(message.guild.me.hasPermission(['MANAGE_NICKNAMES']))
+            member.setNickname(`[MUTED] ${member.user.username}`, 'Muted');
+
         // Sending Modlog
         const channel = message.guild.channels.cache.get('698120856383127600');
         if (channel) {
