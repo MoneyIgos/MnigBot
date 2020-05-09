@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 new Discord.Client();
 
 module.exports = {
-    name: 'mute',
+    name: 'tempmute',
     description: 'Mute Member.',
 
     run(message, args) {
@@ -20,12 +20,12 @@ module.exports = {
         const member = message.mentions.members.first();
         if (!member) return message.reply('You must provide a user to mute!');
 
-        // Checking reason
-        const reason = args.slice(1).join(' ') || 'No reason given';
+        // Checking mutetime
+        const mutetime = args.slice(1);
+        if (!mutetime) return message.reply('You have to specify a mute time!');
 
-        // Setting [MUTED] Nickname
-        if (message.guild.me.hasPermission(['MANAGE_NICKNAMES']))
-            member.setNickname(`[MUTED] ${member.user.username}`, 'Muted');
+        // Checking reason
+        const reason = args.slice(2).join(' ') || 'No reason given';
 
         // Sending Modlog
         const channel = message.guild.channels.cache.get('698120856383127600');
@@ -48,6 +48,7 @@ module.exports = {
             message.guild.roles.create({
                 data: {
                     name: 'muted',
+                    color: '#010101',
                     permissions: [],
                 },
             });
@@ -57,6 +58,15 @@ module.exports = {
         message.channel
             .send(`**${member.user.tag}** has been muted for: ${reason}`)
             .then(() => member.roles.add(muted))
+            .then(member.setNickname(`[MUTED] ${member.user.username}`, 'Muted'))
             .catch((e) => console.log(e));
+
+        setTimeout(() => {
+            message.channel
+                .send(`**${member.user.tag}** has been unmuted.`)
+                .then(() => member.roles.remove(muted))
+                .then(() => member.setNickname(member.user.username, 'Unmuted'))
+                .catch((e) => console.log(e));
+        }, mutetime);
     },
 };

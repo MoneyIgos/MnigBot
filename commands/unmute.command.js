@@ -25,11 +25,8 @@ module.exports = {
         message.channel
             .send(`**${member.user.tag}** has been unmuted`)
             .then(() => member.roles.remove(muted))
+            .then(member.setNickname(member.user.username, 'Unmuted'))
             .catch((e) => console.log(e));
-
-        // Deleting [MUTED] Nickname
-        if(message.guild.me.hasPermission(['MANAGE_NICKNAMES']))
-            member.setNickname(member.user.username, 'Unmuted');
 
         // Sending Modlog
         const channel = message.guild.channels.cache.get('698120856383127600');
