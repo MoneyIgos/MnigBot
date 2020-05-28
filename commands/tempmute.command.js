@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 new Discord.Client();
+const ms = require('ms');
 
 module.exports = {
     name: 'tempmute',
@@ -21,7 +22,7 @@ module.exports = {
         if (!member) return message.reply('You must provide a user to mute!');
 
         // Checking mutetime
-        const mutetime = args.slice(1);
+        const mutetime = args[1];
         if (!mutetime) return message.reply('You have to specify a mute time!');
 
         // Checking reason
@@ -56,7 +57,7 @@ module.exports = {
 
         // Muting
         message.channel
-            .send(`**${member.user.tag}** has been muted for: ${reason}`)
+            .send(`**${member.user.tag}** has been muted for: ${mutetime} \nreason: ${reason}`)
             .then(() => member.roles.add(muted))
             .then(member.setNickname(`[MUTED] ${member.user.username}`, 'Muted'))
             .catch((e) => console.log(e));
@@ -67,6 +68,6 @@ module.exports = {
                 .then(() => member.roles.remove(muted))
                 .then(() => member.setNickname(member.user.username, 'Unmuted'))
                 .catch((e) => console.log(e));
-        }, mutetime);
+        }, ms(mutetime));
     },
 };

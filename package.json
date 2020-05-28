@@ -20,7 +20,8 @@
     "license": "ISC",
     "dependencies": {
         "ascii-table": "0.0.9",
-        "discord.js": "^12.1.1"
+        "discord.js": "^12.1.1",
+        "ms": "^2.1.2"
     },
     "devDependencies": {
         "babel-eslint": "^10.1.0",
