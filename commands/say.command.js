@@ -6,6 +6,13 @@ module.exports = {
   run(message, args) {
     const toSay = args.join(' ');
 
+    // Checking permissions
+    if (
+      !message.guild.me.hasPermission(['ADMINISTRATOR']) ||
+      message.author == '294936820595163142'
+    )
+      return message.reply("You don't have permissions to execute that command.");
+
     // Checking if toSay exists
     if (!toSay) return message.reply("I can't say a silence.");
 
