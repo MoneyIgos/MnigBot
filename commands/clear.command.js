@@ -6,7 +6,7 @@ module.exports = {
     const amount = args.join(' ');
 
     // Checking user permissions
-    if (!message.member.hasPermission(['MANAGE_MESSEGES']))
+    if (!message.member.hasPermission(['MANAGE_MESSAGES']))
       return message.reply('Ughh... You need Manage Messages permissions to perform this command!');
 
     // Checking bot permissions
