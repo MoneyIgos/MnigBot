@@ -1,18 +1,18 @@
 {
-    "env": {
-        "node": true,
-        "es6": true
-    },
-    "plugins": ["prettier"],
-    "extends": ["eslint:recommended", "prettier"],
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module"
-    },
-    "rules": {
-        "prettier/prettier": "error",
-        "prefer-const": "warn",
-        "no-unused-vars": "warn"
-    }
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "plugins": ["prettier"],
+  "extends": ["eslint:recommended", "prettier"],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "prefer-const": "warn",
+    "no-unused-vars": "warn"
+  }
 }

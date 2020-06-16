@@ -1,33 +1,33 @@
 {
-    "name": "mnigbot",
-    "version": "1.3.0",
-    "description": "MnigBot",
-    "main": "index.js",
-    "scripts": {
-        "dev": "node index.js",
-        "dev:watch": "nodemon index.js",
-        "lint": "eslint .",
-        "lint:fix": "eslint . --fix"
-    },
-    "keywords": [
-        "MnigBot",
-        "DiscordBot",
-        "Bot",
-        "Discord",
-        "Mnig"
-    ],
-    "author": "MoneyIgos",
-    "license": "ISC",
-    "dependencies": {
-        "ascii-table": "0.0.9",
-        "discord.js": "^12.1.1",
-        "ms": "^2.1.2"
-    },
-    "devDependencies": {
-        "babel-eslint": "^10.1.0",
-        "eslint": "^6.8.0",
-        "eslint-config-prettier": "^6.11.0",
-        "eslint-plugin-prettier": "^3.1.3",
-        "prettier": "^2.0.5"
-    }
+  "name": "mnigbot",
+  "version": "1.3.2",
+  "description": "MnigBot",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js",
+    "dev:watch": "nodemon index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "keywords": [
+    "MnigBot",
+    "DiscordBot",
+    "Bot",
+    "Discord",
+    "Mnig"
+  ],
+  "author": "MoneyIgos",
+  "license": "ISC",
+  "dependencies": {
+    "ascii-table": "0.0.9",
+    "discord.js": "^12.1.1",
+    "ms": "^2.1.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "prettier": "^2.0.5"
+  }
 }

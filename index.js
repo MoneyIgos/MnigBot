@@ -7,7 +7,7 @@ const commandHandler = require('./handlers/command.handler.js');
 commandHandler(client);
 
 client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}`);
-    client.user.setActivity('>help', { type: 'LISTENING' });
+  console.log(`Logged in as ${client.user.tag}`);
+  client.user.setActivity('>help', { type: 'LISTENING' });
 });
 client.login(token);
