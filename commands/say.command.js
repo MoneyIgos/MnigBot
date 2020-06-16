@@ -8,8 +8,8 @@ module.exports = {
 
     // Checking permissions
     if (
-      !message.guild.me.hasPermission(['ADMINISTRATOR']) ||
-      message.author == '294936820595163142'
+      !message.member.hasPermission(['MANAGE_MESSAGES']) ||
+      message.member != '294936820595163142'
     )
       return message.reply("You don't have permissions to execute that command.");
 
