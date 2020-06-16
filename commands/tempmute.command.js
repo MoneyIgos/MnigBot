@@ -38,7 +38,8 @@ module.exports = {
                     { name: 'Member:', value: member, inline: true },
                     { name: 'Moderator:', value: message.author, inline: true },
                     { name: 'Reason:', value: reason, inline: true },
-                    { name: 'Date:', value: message.createdAt.toLocaleString() }
+                    { name: 'Date:', value: message.createdAt.toLocaleString() },
+                    { name: 'Time:', value: mutetime, inline: true }
                 );
             channel.send(embed);
         }
