@@ -7,6 +7,12 @@ module.exports = {
     description: 'Mute Member.',
 
     run(message, args) {
+        const member = message.mentions.members.first();
+        const reason = args.slice(2).join(' ') || 'No reason given';
+        const channel = message.guild.channels.cache.get('698120856383127600');
+        const mutetime = args[1];
+
+
         // Checking user permissions
         if (!message.member.hasPermission(['MANAGE_ROLES']))
             return message.reply(
@@ -18,18 +24,12 @@ module.exports = {
             return message.reply("I don't have permission to perform this command!");
 
         // Checking member to mute
-        const member = message.mentions.members.first();
         if (!member) return message.reply('You must provide a user to mute!');
 
         // Checking mutetime
-        const mutetime = args[1];
         if (!mutetime) return message.reply('You have to specify a mute time!');
 
-        // Checking reason
-        const reason = args.slice(2).join(' ') || 'No reason given';
-
         // Sending Modlog
-        const channel = message.guild.channels.cache.get('698120856383127600');
         if (channel) {
             const embed = new Discord.MessageEmbed()
                 .setColor('#ff0000')

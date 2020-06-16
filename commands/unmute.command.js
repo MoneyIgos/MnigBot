@@ -6,6 +6,10 @@ module.exports = {
     description: 'Unmute Member.',
 
     run(message) {
+        const member = message.mentions.members.first();
+        const muted = message.guild.roles.cache.find((role) => role.name === 'muted');
+        const channel = message.guild.channels.cache.get('698120856383127600');
+
         // Checking user permissions
         if (!message.member.hasPermission(['MANAGE_ROLES']))
             return message.reply(
@@ -17,11 +21,9 @@ module.exports = {
             return message.reply("I don't have permission to perform this command!");
 
         // Checking member to unmute
-        const member = message.mentions.members.first();
         if (!member) return message.reply('You must provide a user to kick!');
 
         // Unmuting
-        const muted = message.guild.roles.cache.find((role) => role.name === 'muted');
         message.channel
             .send(`**${member.user.tag}** has been unmuted`)
             .then(() => member.roles.remove(muted))
@@ -29,7 +31,6 @@ module.exports = {
             .catch((e) => console.log(e));
 
         // Sending Modlog
-        const channel = message.guild.channels.cache.get('698120856383127600');
         if (channel) {
             const embed = new Discord.MessageEmbed()
                 .setColor('#00ff00')

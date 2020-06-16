@@ -17,6 +17,7 @@ module.exports = {
             const command = require(`${__dirname}/../commands/${file}`);
             commands += `${command.name}\n`;
         }
+
         const Embed = new Discord.MessageEmbed()
             .setColor('#247800')
             .setTitle('Command List')

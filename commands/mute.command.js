@@ -6,6 +6,11 @@ module.exports = {
     description: 'Mute Member.',
 
     run(message, args) {
+        const member = message.mentions.members.first();
+        const reason = args.slice(1).join(' ') || 'No reason given';
+        const channel = message.guild.channels.cache.get('698120856383127600');
+        const muted = message.guild.roles.cache.find((role) => role.name === 'muted');
+
         // Checking user permissions
         if (!message.member.hasPermission(['MANAGE_ROLES']))
             return message.reply(
@@ -17,18 +22,13 @@ module.exports = {
             return message.reply("I don't have permission to perform this command!");
 
         // Checking member to mute
-        const member = message.mentions.members.first();
         if (!member) return message.reply('You must provide a user to mute!');
-
-        // Checking reason
-        const reason = args.slice(1).join(' ') || 'No reason given';
 
         // Setting [MUTED] Nickname
         if (message.guild.me.hasPermission(['MANAGE_NICKNAMES']))
             member.setNickname(`[MUTED] ${member.user.username}`, 'Muted');
 
         // Sending Modlog
-        const channel = message.guild.channels.cache.get('698120856383127600');
         if (channel) {
             const embed = new Discord.MessageEmbed()
                 .setColor('#ff0000')
@@ -43,7 +43,6 @@ module.exports = {
         }
 
         // Cheching rank
-        const muted = message.guild.roles.cache.find((role) => role.name === 'muted');
         if (!muted) {
             message.guild.roles.create({
                 data: {

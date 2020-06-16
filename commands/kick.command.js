@@ -6,6 +6,10 @@ module.exports = {
     description: 'kick Member.',
 
     run(message, args) {
+        const member = message.mentions.members.first();
+        const reason = args.slice(1).join(' ') || 'No reason given';
+        const channel = message.guild.channels.cache.get('698120856383127600');
+
         // Checking user permissions
         if (!message.member.hasPermission(['KICK_MEMBERS']))
             return message.reply(
@@ -13,11 +17,7 @@ module.exports = {
             );
 
         // Checking member to kick
-        const member = message.mentions.members.first();
         if (!member) return message.reply('You must provide a user to kick!');
-
-        // Checking reason
-        const reason = args.slice(1).join(' ') || 'No reason given';
 
         // Checking bot permissions
         if (!message.guild.me.hasPermission(['KICK_MEMBERS']))
@@ -31,7 +31,6 @@ module.exports = {
         message.channel.send(`**${member.user.tag}** has been kicked`);
 
         // Sending Modlog
-        const channel = message.guild.channels.cache.get('698120856383127600');
         if (!channel) {
             const embed = new Discord.MessageEmbed()
                 .setColor('#ff0000')
