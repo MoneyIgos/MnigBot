@@ -5,7 +5,6 @@ const ascii = require('ascii-table');
 const table = new ascii().setHeading('Command', 'Load status');
 
 module.exports = (client) => {
-  // Collections
   client.commands = new Collection();
 
   const commandFiles = readdirSync(`${__dirname}/../commands`).filter((file) =>
@@ -31,13 +30,10 @@ module.exports = (client) => {
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
 
-    // Check if user is a bot
     if (author.bot || !guild) return;
 
-    // Ignore messages without prefix
     if (!message.content.startsWith(prefix)) return;
 
-    // Check if commands exist
     if (!client.commands.has(cmd)) return;
 
     try {

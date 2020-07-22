@@ -13,21 +13,16 @@ module.exports = {
     const mutetime = args[1];
 
 
-    // Checking user permissions
     if (!message.member.hasPermission(['MANAGE_ROLES']))
       return message.reply('Ughh... You need Manage Roles permissions to perform this command!');
 
-    // Checking bot permissions
     if (!message.guild.me.hasPermission(['MANAGE_ROLES']))
       return message.reply("I don't have permission to perform this command!");
 
-    // Checking member to mute
     if (!member) return message.reply('You must provide a user to mute!');
 
-    // Checking mutetime
     if (!mutetime) return message.reply('You have to specify a mute time!');
 
-    // Sending Modlog
     if (channel) {
       const embed = new Discord.MessageEmbed()
         .setColor('#ff0000')
@@ -42,7 +37,6 @@ module.exports = {
       channel.send(embed);
     }
 
-    // Cheching rank
     const muted = message.guild.roles.cache.find((role) => role.name === 'muted');
     if (!muted) {
       message.guild.roles.create({
@@ -54,7 +48,6 @@ module.exports = {
       });
     }
 
-    // Muting
     message.channel
       .send(`**${member.user.tag}** has been muted for: ${mutetime} \nreason: ${reason}`)
       .then(member.setNickname(`[MUTED] ${member.user.username}`, 'Muted'))

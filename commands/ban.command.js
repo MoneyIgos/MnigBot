@@ -10,18 +10,14 @@ module.exports = {
     const reason = args.slice(1).join(' ') || 'No reason given';
     const channel = message.guild.channels.cache.get('698120856383127600');
 
-    // Checking user permissions
     if (!message.member.hasPermission(['BAN_MEMBERS']))
       return message.reply('Ughh... You need Ban Members permissions to perform this command!');
 
-    // Checking member to ban
     if (!member) return message.reply('You must provide a user to ban!');
 
-    // Checking bot permissions
     if (!message.guild.me.hasPermission(['BAN_MEMBERS']))
       return message.reply("I don't have permission to perform this command!");
 
-    // Sending Modlog
     if (!channel) {
       const embed = new Discord.MessageEmbed()
         .setColor('#ff0000')
@@ -36,7 +32,6 @@ module.exports = {
       channel.send(embed);
     }
 
-    // Banning
     member
       .send(`You have been banned from ${message.guild.name} for: ${reason}`)
       .then(() => member.ban())
